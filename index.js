@@ -4,6 +4,19 @@ const port = 3000
 const MailConfig = require('./config/email');
 const hbs = require('nodemailer-express-handlebars');
 const smtpTransport = MailConfig.smtpTransport;
+const cors = require('cors')
+
+const whitelist = ['http://ampatacona.com', 'http://localhost']
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+}
+app.use(cors(corsOptions))
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
