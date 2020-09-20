@@ -23,10 +23,6 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
-
 app.post('/contact', (req, res, next) => {
   console.log('req.body de contact', req.body)
   const obj = req.body && req.body.form ? req.body.form : null
@@ -56,4 +52,8 @@ app.post('/contact', (req, res, next) => {
       }
   });
   
+});
+
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`)
 });
