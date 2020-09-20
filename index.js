@@ -48,8 +48,10 @@ app.post('/contact', (req, res, next) => {
   return transport.sendMail(message, function(err, info) {
       if (err) {
         console.log('error al enviar correu de contacte', err)
+        return res.json({error: err})
       } else {
         console.log('correu de contacte enviat correctament', info);
+        return res.json({success: info})
       }
   });
   
