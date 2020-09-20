@@ -1,14 +1,15 @@
 const express = require('express')
 const app = express()
+// const path = require('path')
 const port = 3000
-const hbs = require('nodemailer-express-handlebars')
+// const hbs = require('nodemailer-express-handlebars')
 const nodemailer = require('nodemailer')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
 
-const whitelist = ['https://ampatacona.com', 'http://localhost:3000']
+const whitelist = ['https://ampatacona.com', 'http://localhost:3333']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -36,45 +37,44 @@ app.post('/contact', (req, res, next) => {
     }
   })
 
-  const options = {
-    extName: '.hbs',
-    viewPath: '/views/email/',
-    layoutsDir: '/view/email',
-    defaultLayout: 'contact',
-    partialsDir: '/views/email/partials/'
-  }
+  // const options = {
+  //   extname: '.hbs',
+  //   defaultLayout: 'main',
+  //   partialsDir: path.join(__dirname, 'views/partials'),
+  //   layoutsDir: path.join(__dirname, 'views/layouts')
+  // }
 
-  transport.use('compile', hbs(options))
+  // transport.use('compile', hbs(options))
 
-  // const html = `
-  // <p>
-  // Nom: ${obj.name} <br>
-  // Email: ${obj.email} <br>
-  // Assumpte: ${obj.subject} <br>
-  // </p>
+  const html = `
+  <p>
+  Nom: ${obj.name} <br>
+  Email: ${obj.email} <br>
+  Assumpte: ${obj.subject} <br>
+  </p>
 
-  // <p>
-  // Missatge:
-  // </p>
-  // <p>
-  // ${obj.message}
-  // </p>
-  // `
+  <p>
+  Missatge:
+  </p>
+  <p>
+  ${obj.message}
+  </p>
+  `
 
   const message = {
     from: process.env.SMTP_USER_NAME, // Sender address
     to: process.env.SMTP_USER_NAME,
     replyTo: obj.email, // List of recipients
     subject: obj.subject,
-    // text: obj.message,
-    // html: html,
-    template: 'email',
-    context: {
-      name: obj.name,
-      email: obj.email,
-      subject: obj.subject,
-      message: obj.message
-    }
+    text: obj.message,
+    html: html
+    // template: 'contact',
+    // context: {
+    //   name: obj.name,
+    //   email: obj.email,
+    //   subject: obj.subject,
+    //   message: obj.message
+    // }
   }
   return transport.sendMail(message, function (err, info) {
     if (err) {
