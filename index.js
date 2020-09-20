@@ -26,10 +26,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/contact', (req, res, next) => {
-  console.log('req.body de contact', req.body)
-  const obj = req.body && req.body.form ? req.body.form : null
+  console.log('req.body de contact', req.body.toString())
+  const obj = req.body
   
-
   let transport = nodemailer.createTransport({
     host: process.env.SMTP_SERVICE_HOST,
     port: process.env.SMTP_SERVICE_PORT,
