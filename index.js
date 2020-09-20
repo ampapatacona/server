@@ -38,12 +38,28 @@ app.post('/contact', (req, res, next) => {
     }
   });
 
+  const html = `
+  <p>
+  Nom: ${obj.name} <br>
+  Email: ${obj.email} <br>
+  Assumpte: ${obj.subject} <br>
+  </p>
+
+  <p>
+  Missatge:
+  </p>
+  <p>
+  ${obj.message}
+  </p>
+  `
+
   const message = {
     from: process.env.SMTP_USER_NAME, // Sender address
     to: process.env.SMTP_USER_NAME,  
     replyTo: obj.email,     // List of recipients
     subject: obj.subject,
-    template: obj.message
+    text: obj.message,
+    html: html
   };
   return transport.sendMail(message, function(err, info) {
       if (err) {
