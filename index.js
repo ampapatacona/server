@@ -4,8 +4,10 @@ const port = 3000
 const MailConfig = require('./config/email');
 const hbs = require('nodemailer-express-handlebars');
 const nodemailer = require('nodemailer');
-const smtpTransport = MailConfig.smtpTransport;
 const cors = require('cors')
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
 
 const whitelist = ['https://ampatacona.com', 'http://localhost:3000']
 const corsOptions = {
