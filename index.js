@@ -13,7 +13,7 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-app.get('/contact', (req, res, next) => {
+app.post('/contact', (req, res, next) => {
 
   const obj = req.body
 
