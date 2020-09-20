@@ -26,7 +26,6 @@ app.get('/', (req, res) => {
 })
 
 app.post('/contact', (req, res, next) => {
-  console.log('req.body de contact', req.body.toString())
   const obj = req.body
   
   let transport = nodemailer.createTransport({
