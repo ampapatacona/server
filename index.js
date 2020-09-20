@@ -35,9 +35,9 @@ app.post('/contact', (req, res, next) => {
   };
   return transport.sendMail(message, function(err, info) {
       if (err) {
-        console.log(err)
+        console.log('error al enviar correu de contacte', err)
       } else {
-        console.log(info);
+        console.log('correu de contacte enviat correctament', info);
       }
   });
   
