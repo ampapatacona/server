@@ -6,7 +6,7 @@ const hbs = require('nodemailer-express-handlebars');
 const smtpTransport = MailConfig.smtpTransport;
 const cors = require('cors')
 
-const whitelist = ['http://ampatacona.com', 'http://localhost']
+const whitelist = ['https://ampatacona.com', 'http://localhost:3000']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
