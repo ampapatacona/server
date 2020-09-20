@@ -28,9 +28,9 @@ app.listen(port, () => {
 })
 
 app.post('/contact', (req, res, next) => {
-
-  const obj = req.body
-  console.log('req.body de contact', req)
+  console.log('req.body de contact', req.body)
+  const obj = req.body && req.body.form ? req.body.form : null
+  
 
   let transport = nodemailer.createTransport({
     host: process.env.SMTP_SERVICE_HOST,
