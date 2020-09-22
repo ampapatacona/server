@@ -57,7 +57,7 @@ app.post('/contact', (req, res, next) => {
     subject: obj.subject,
     // text: obj.message,
     // html: html
-    template: 'template',
+    template: 'contact',
     context: {
       name: obj.name,
       email: obj.email,
