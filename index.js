@@ -41,7 +41,7 @@ app.post('/contact', (req, res, next) => {
     viewEngine: {
       extname: '.hbs', // handlebars extension
       layoutsDir: 'views/email/', // location of handlebars templates
-      defaultLayout: 'template', // name of main template
+      defaultLayout: 'contact', // name of main template
       partialsDir: 'views/email/' // location of your subtemplates aka. header, footer etc
     },
     viewPath: 'views/email',
@@ -49,21 +49,6 @@ app.post('/contact', (req, res, next) => {
   }
 
   transport.use('compile', hbs(options))
-
-  // const html = `
-  // <p>
-  // Nom: ${obj.name} <br>
-  // Email: ${obj.email} <br>
-  // Assumpte: ${obj.subject} <br>
-  // </p>
-
-  // <p>
-  // Missatge:
-  // </p>
-  // <p>
-  // ${obj.message}
-  // </p>
-  // `
 
   const message = {
     from: process.env.SMTP_USER_NAME, // Sender address
