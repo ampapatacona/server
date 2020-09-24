@@ -34,7 +34,6 @@ module.exports = function (app) {
     console.log(user)
     console.log('TOKEN REFRESH', user.uid)
     return updateClaims(user.uid).then(() => {
-      console.log('updated claims', graphqlClient)
       return true
     })
       .then(() => {
@@ -51,7 +50,8 @@ module.exports = function (app) {
         }
         return graphqlClient(mutation, variables).catch((error) => console.error(error))
       })
-      .then(() => {
+      .then((newuser) => {
+        console.log('newuser', newuser)
         return res.status(200).send('success')
       }).catch((error) => {
         console.error('REFRESH ERROR', error)
