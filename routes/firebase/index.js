@@ -20,13 +20,19 @@ admin.initializeApp({
   databaseURL: 'https://ampa-ceip-patacona.firebaseio.com'
 })
 
-const updateClaims = (uid) => admin.auth().setCustomUserClaims(uid, {
-  'https://hasura.io/jwt/claims': {
-    'x-hasura-default-role': 'user',
-    'x-hasura-allowed-roles': ['user'],
-    'x-hasura-user-id': uid
-  }
-})
+const updateClaims = (uid, admin) => {
+  const defaultRole = admin ? 'admin' : 'user'
+  const roles = admin ? ['user', 'admin'] : ['user']
+  admin.auth().setCustomUserClaims(uid, {
+    'https://hasura.io/jwt/claims': {
+      'x-hasura-default-role': defaultRole,
+      'x-hasura-allowed-roles': roles,
+      'x-hasura-user-id': uid
+    }
+  })
+}
+
+module.exports = updateClaims
 
 module.exports = function (app) {
   app.post('/refresh-token', (req, res) => {
