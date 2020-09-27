@@ -32,7 +32,7 @@ const updateClaims = (uid, admin) => {
   })
 }
 
-module.exports.updateClaims = updateClaims
+exports.updateClaims = updateClaims
 
 module.exports = function (app) {
   app.post('/refresh-token', (req, res) => {
