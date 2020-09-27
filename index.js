@@ -33,6 +33,7 @@ app.use(function (req, res, next) {
 require('./routes/test')(app)
 require('./routes/email')(app)
 require('./routes/firebase')(app)
+require('./routes/webhooks')(app)
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)
