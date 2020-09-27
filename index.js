@@ -11,7 +11,7 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
 
-const whitelist = ['https://ampatacona.com', 'http://localhost:3333', 'http://localhost:3000', 'http://localhost:8080']
+const whitelist = ['https://ampatacona.com', 'https://server.ampatacona.com', 'https://app.ampatacona.com', 'http://localhost:3333', 'http://localhost:3000', 'http://localhost:8080']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
